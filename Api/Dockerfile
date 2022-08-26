@@ -6,6 +6,12 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["Api/Api.csproj", "Api/"]
+COPY ["CrossCutting.csproj", "CrossCutting/"]
+COPY ["Domain.csproj", "Domain/"]
+COPY ["Infra.Data.Command.csproj", "Infra.Data.Command/"]
+COPY ["Infra.Data.Query.csproj", "Infra.Data.Query/"]
+COPY ["Infra.Service", "Infra.Service/"]
+
 RUN dotnet restore "Api/Api.csproj"
 COPY . .
 WORKDIR "/src/Api"
